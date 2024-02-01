@@ -1,15 +1,14 @@
-import React, { useState } from "react"
 import { Button, TextField } from "@mui/material"
-const Register = () => {
+import React, { useState } from "react"
+
+const Login = () => {
   const BASE_URL = "http://127.0.0.1:8000/"
   const [formData, setFormData] = useState({
     email: "",
-    first_name: "",
-    last_name: "",
     password: "",
   })
   const handleFormSubmit = () => {
-    fetch(`${BASE_URL}register/`, {
+    fetch(`${BASE_URL}login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,28 +34,7 @@ const Register = () => {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
       </div>
-      <div className="mt-3">
-        <TextField
-          id="first_name"
-          type="text"
-          label="First name"
-          variant="outlined"
-          onChange={(e) =>
-            setFormData({ ...formData, first_name: e.target.value })
-          }
-        />
-      </div>
-      <div className="mt-3">
-        <TextField
-          id="last_name"
-          type="text"
-          label="Last name"
-          variant="outlined"
-          onChange={(e) =>
-            setFormData({ ...formData, last_name: e.target.value })
-          }
-        />
-      </div>
+
       <div className="mt-3">
         <TextField
           id="password"
@@ -70,11 +48,11 @@ const Register = () => {
       </div>
       <div className="mt-3">
         <Button variant="contained" onClick={handleFormSubmit}>
-          Register
+          Login
         </Button>
       </div>
     </div>
   )
 }
 
-export default Register
+export default Login
