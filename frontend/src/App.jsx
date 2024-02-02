@@ -11,17 +11,26 @@ import ChatArea from "./components/ChatArea"
 function App() {
   return (
     <>
-      <div className="chat-container">
+      {/* <div className="chat-container">
         <Sidebar />
         <ChatArea />
-      </div>
-      {/* <BrowserRouter>
+      </div> */}
+      <BrowserRouter>
         <Navigate />
         <Routes>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route
+            path="/chat"
+            element={
+              <>
+                <Sidebar />
+                <ChatArea />
+              </>
+            }
+          ></Route>
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </>
   )
 }
