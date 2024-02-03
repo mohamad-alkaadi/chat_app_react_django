@@ -1,8 +1,9 @@
 import React from "react"
 import Message from "./Message"
 import MessageInput from "./MessageInput"
-import withAuthentication from "../utils/withAuthentication.jsx"
+import WithAuthentication from "../utils/WithAuthentication.jsx"
 const ChatArea = () => {
+  console.log("im renderd")
   return (
     <div className="chat-area">
       <div className="chat-header"></div>
@@ -17,4 +18,5 @@ const ChatArea = () => {
   )
 }
 
-export default withAuthentication(ChatArea)
+export default WithAuthentication(ChatArea)
+// export default ChatArea

@@ -15,15 +15,17 @@ class JWTAuthentication(BaseAuthentication):
         token = self.extract_token(request=request)
         if token is None:
             return None
+
         try:
-            payload = jwt.decode(token, settings.SECRET_KEY, algorithms="HS256")
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
             self.verify_token(payload=payload)
             user_id = payload['id']
-            user = User.objects.get(id=user_id)
-            return User
-        except(InvalidTokenError, ExpiredSignatureError, User.DoesNotExist):
+            user = User.objects.get(id=user_id)  # Retrieve the actual user instance
+            return (user, None)  # Return a tuple of (user, None) to indicate successful authentication
+        except (InvalidTokenError, ExpiredSignatureError):
             raise AuthenticationFailed("Invalid Token")
-
+        except User.DoesNotExist:
+            raise AuthenticationFailed("User not found")
 
     def verify_token(self, payload):
         if "exp" not in payload:

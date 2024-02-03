@@ -23,10 +23,10 @@ function App() {
           <Route
             path="/chat"
             element={
-              <>
+              <div className="chat-container">
                 <Sidebar />
                 <ChatArea />
-              </>
+              </div>
             }
           ></Route>
         </Routes>

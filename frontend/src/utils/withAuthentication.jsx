@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
 
-const withAuthentication = (WrappedComponent) => {
+const WithAuthentication = (WrappedComponent) => {
   return function AuthComponent(props) {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -9,6 +9,7 @@ const withAuthentication = (WrappedComponent) => {
       const token = document.cookie
         .split("; ")
         .find((row) => row.startsWith("token="))
+
       if (token) {
         setIsAuthenticated(true)
       } else {
@@ -19,9 +20,9 @@ const withAuthentication = (WrappedComponent) => {
     if (isAuthenticated) {
       return <WrappedComponent {...props} />
     } else {
-      return <Navigate to={"/login"} />
+      return <Navigate to={"/chat/"} />
     }
   }
 }
 
-export default withAuthentication
+export default WithAuthentication

@@ -1,12 +1,12 @@
 import { Button, TextField } from "@mui/material"
 import React, { useState } from "react"
-
 const Login = () => {
   const BASE_URL = "http://127.0.0.1:8000/"
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   })
+
   const handleFormSubmit = () => {
     fetch(`${BASE_URL}login/`, {
       method: "POST",
@@ -18,6 +18,8 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
+        const token = data.token
+        document.cookie = `token=${token}; path=/`
       })
       .catch((error) => {
         console.log(error)
